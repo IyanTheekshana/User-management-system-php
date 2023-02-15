@@ -14,7 +14,7 @@
         $class = $activeIndex ?  'active' :  '';
       ?>
       <li class="nav-item ml-3 <?=$class?>">
-        <a class="nav-link" href="index.php">Home 
+        <a class="nav-link" href="index.php">Users 
             <?php if($activeIndex) {?>
             <span class="sr-only">(current)</span>
             <?php } ?>
@@ -30,14 +30,14 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="<?=$currentUrl?>" id="searchForm">
 
-      <select id="recordPerPage" name="recordPerPage" class="form-control" 
+      <select id="recordPerPage" name="recordPerPage" class="form-control ml-3" 
       onchange="document.forms.searchForm.submit()">
         <option value="10" selected>Choose...</option>
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
-        <option value="100">50</option>
+        <option value="100">100</option>
       </select>
 
       <input class="form-control mr-sm-2  ml-3 " type="search" placeholder="Search" aria-label="Search">

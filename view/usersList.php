@@ -2,6 +2,7 @@
     $orderDirClass = $orderDir;
     $orderDir = $orderDir === 'ASC' ? 'DESC' : 'ASC';
 ?>
+<div class="table-responsive-xl">
 <table class="table table-striped mt-4">
 
     <thead>
@@ -31,3 +32,4 @@
     ?>
     </tbody>
 </table>
+</div>
