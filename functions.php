@@ -76,13 +76,25 @@ function insertRandUser($totale, mysqli $conn)
 function getUsers(array $params = []){
 
     $conn = $GLOBALS['mysqli'];
+
+    // for get param from array to order by
+    $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id';
+
+    // for get param from array to order direction (ASC/DESC)
+    $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+
+    if($orderDir !== 'ASC' && $orderDir !== 'DESC'){
+        $orderDir = 'ASC';
+    }
+
     $records = [];
     $limit = getConfig('recordPerPage');
+
     if($limit){
         $limit = 10;
     }
-    $sql = 'SELECT * FROM `users` LIMIT '.$limit;
-
+    $sql = "SELECT * FROM `users` ORDER BY $orderBy $orderDir LIMIT $limit";
+    var_dump($sql);
     $res = $conn->query($sql);
     if($res){
 
@@ -91,6 +103,7 @@ function getUsers(array $params = []){
         }
     }else{
         echo $conn->error."<br>";
+        die($conn->error);
     }
 
     return $records;

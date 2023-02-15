@@ -8,12 +8,23 @@
 <main role="main" class="container">
   <?php 
     $action = getParam('action');
+    $page = $_SERVER['PHP_SELF'];
+    
     switch($action){
       case 'insert': 
         break;
 
       default:
-        $users = getUsers();
+        $orderBy = getParam('orderBy','id');
+        $orderDir = getParam('orderDir','ASC');
+        if(!in_array($orderBy, getConfig('orderByColums'))){
+          $orderBy = 'id';
+        }
+        $params = [
+          'orderBy' => $orderBy,
+          'orderDir' => $orderDir, 
+        ];
+        $users = getUsers($params);
         require_once 'view/usersList.php';
         break;
     }

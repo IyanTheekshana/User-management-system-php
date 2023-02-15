@@ -1,12 +1,16 @@
+<?php
+    $orderDirClass = $orderDir;
+    $orderDir = $orderDir === 'ASC' ? 'DESC' : 'ASC';
+?>
 <table class="table table-striped mt-4">
 
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Fiscal Code</th>
-            <th>Email</th>
-            <th>Age</th>
+            <th class="<?=$orderBy === 'id' ? $orderDirClass : '' ?>"><a href="<?=$page?>?orderBy=id&orderDir=<?=$orderDir?>">Id</a></th>
+            <th class="<?=$orderBy === 'username' ? $orderDirClass : '' ?>"><a href="<?=$page?>?orderBy=username&orderDir=<?=$orderDir?>">Name</a></th>
+            <th class="<?=$orderBy === 'fiscalcode' ? $orderDirClass : '' ?>"><a href="<?=$page?>?orderBy=fiscalcode&orderDir=<?=$orderDir?>">Fiscal Code</a></th>
+            <th class="<?=$orderBy === 'email' ? $orderDirClass : '' ?>"><a href="<?=$page?>?orderBy=email&orderDir=<?=$orderDir?>">Email</a></th>
+            <th class="<?=$orderBy === 'age' ? $orderDirClass : '' ?>"><a href="<?=$page?>?orderBy=age&orderDir=<?=$orderDir?>">Age</a></th>
         </tr>
     </thead>
     <tbody>

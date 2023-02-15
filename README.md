@@ -14,3 +14,7 @@
 
 5. created function for SELECT query from DB named getUsers().
 6. added userList.php to add table for users list table.
+
+## 4° step:
+
+7. implemented filter by asc and desc of data by id, name, fiscal code, email, age
