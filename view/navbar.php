@@ -28,7 +28,18 @@
         <a class="nav-link" href="index.php?action=insert">New User</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" method="GET" action="<?=$currentUrl?>" id="searchForm">
+
+      <select id="recordPerPage" name="recordPerPage" class="form-control" 
+      onchange="document.forms.searchForm.submit()">
+        <option value="10" selected>Choose...</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">50</option>
+      </select>
+
       <input class="form-control mr-sm-2  ml-3 " type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0 ml-3" type="submit">Search</button>
     </form>

@@ -17,12 +17,14 @@
       default:
         $orderBy = getParam('orderBy','id');
         $orderDir = getParam('orderDir','ASC');
+        $recordPerPage = getParam('recordPerPage',getConfig('recordPerPage'));
         if(!in_array($orderBy, getConfig('orderByColums'))){
           $orderBy = 'id';
         }
         $params = [
           'orderBy' => $orderBy,
           'orderDir' => $orderDir, 
+          'recordPerPage' => $recordPerPage
         ];
         $users = getUsers($params);
         require_once 'view/usersList.php';

@@ -88,11 +88,8 @@ function getUsers(array $params = []){
     }
 
     $records = [];
-    $limit = getConfig('recordPerPage');
+    $limit = (int)array_key_exists('recordPerPage', $params) ? $params['recordPerPage'] : 10;
 
-    if($limit){
-        $limit = 10;
-    }
     $sql = "SELECT * FROM `users` ORDER BY $orderBy $orderDir LIMIT $limit";
     var_dump($sql);
     $res = $conn->query($sql);

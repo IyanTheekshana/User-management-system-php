@@ -18,3 +18,8 @@
 ## 4° step:
 
 7. implemented filter by asc and desc of data by id, name, fiscal code, email, age
+
+## 5° step:
+
+8. implemented filter dy record per page
+9.
