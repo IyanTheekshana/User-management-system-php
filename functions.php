@@ -2,6 +2,15 @@
 
 require_once 'connection.php';
 
+function getConfig($param){
+    $config = require 'config.php';
+    return array_key_exists($param,$config) ? $config[$param] : null;
+}
+
+function getParam($parm, $default = null){
+   return !empty($_REQUEST[$parm]) ? $_REQUEST[$parm] : $default;
+}
+
 function getRandName(){
     $names = ['ROBERTO', 'GIOVANNI', 'MARIO', 'ALESSANDRO', 'VALENTINA', 'SOFIA', 'ALEX', 'ALESSIO'];
     $lastnames = ['ROSSI', 'RE', 'ARIAS', 'SILVA', 'FERNANDO'];
@@ -63,4 +72,31 @@ function insertRandUser($totale, mysqli $conn)
 }
 }
 
+
+function getUsers(array $params = []){
+
+    $conn = $GLOBALS['mysqli'];
+    $records = [];
+    $limit = getConfig('recordPerPage');
+    if($limit){
+        $limit = 10;
+    }
+    $sql = 'SELECT * FROM `users` LIMIT '.$limit;
+
+    $res = $conn->query($sql);
+    if($res){
+
+        while($row = $res->fetch_assoc()){
+           $records[] = $row;
+        }
+    }else{
+        echo $conn->error."<br>";
+    }
+
+    return $records;
+}
+
 // insertRandUser(0, $mysqli);
+// echo getConfig('recordPerPage');
+
+

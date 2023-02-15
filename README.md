@@ -9,3 +9,8 @@
 
 3. added views: index.php(main), top, navbar and footer.
 4. implemented navbar with php
+
+## 3°step:
+
+5. created function for SELECT query from DB named getUsers().
+6. added userList.php to add table for users list table.

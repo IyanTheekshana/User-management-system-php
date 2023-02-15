@@ -1,7 +1,7 @@
 <?php
 
 // 1. dichiare un variabile per includere la connessione che viene da config file
-$config = require_once 'config.php';
+$config = require 'config.php';
 
 // var_dump($config);
 
@@ -19,4 +19,3 @@ if($mysqli->connect_error){
 //     echo 'Connessione riuscita'."<br>";
 //     // var_dump($mysqli);
 // }
-
