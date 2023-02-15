@@ -19,3 +19,4 @@ if($mysqli->connect_error){
 //     echo 'Connessione riuscita'."<br>";
 //     // var_dump($mysqli);
 // }
+

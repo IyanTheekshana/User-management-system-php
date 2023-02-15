@@ -1,5 +1,7 @@
 <?php
 
+require_once 'connection.php';
+
 function getRandName(){
     $names = ['ROBERTO', 'GIOVANNI', 'MARIO', 'ALESSANDRO', 'VALENTINA', 'SOFIA', 'ALEX', 'ALESSIO'];
     $lastnames = ['ROSSI', 'RE', 'ARIAS', 'SILVA', 'FERNANDO'];
@@ -9,8 +11,6 @@ function getRandName(){
     return $names[$rand1].' '. $lastnames[$rand2];
 }
 
-// $nameRand = getRandName();
-// echo "$nameRand <br>";
 
 function getRandomEmail($name){
 
@@ -24,7 +24,6 @@ function getRandomEmail($name){
     return $strtolower.$randNum.'@'.$domain[$randIndex];
 }
 
-// echo getRandomEmail($nameRand);
 
 function getRandFiscalCode(){
     $i = 16;
@@ -37,11 +36,31 @@ function getRandFiscalCode(){
     return $res;
 }
 
-// echo getRandFiscalCode();
-
 
 function getRandAge(){
     return mt_rand(0,90);
 }
 
-// echo getRandAge();
+function insertRandUser($totale, mysqli $conn)
+{
+    while($totale>0){
+
+    $username = getRandName();
+    $email = getRandomEmail($username);
+    $age = getRandAge();
+    $fiscalcode = getRandFiscalCode();
+
+    $sql = "INSERT INTO users (username, email, fiscalcode, age) VALUES ";
+    $sql .="('$username','$email','$fiscalcode','$age')";
+
+    echo $totale.' - '.$sql."<br>";
+
+    $res = $conn->query($sql);
+    if(!$res){
+        echo $conn->error."<br>";
+    }
+    else{$totale--;}
+}
+}
+
+// insertRandUser(0, $mysqli);
