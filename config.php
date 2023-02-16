@@ -6,7 +6,8 @@ return [
     'mysql_password' => '',
     'mysql_db' => 'user-management-system',
     'recordPerPage' => 10,
+    'recordPerPageOptions' => [5,10,20,30, 50,100],
     'orderByColums' => [
-        'id','email','fiscalcode','age','username'
+        'id','username','fiscalcode','email','age'
     ],
 ];

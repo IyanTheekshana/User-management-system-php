@@ -30,18 +30,35 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="<?=$currentUrl?>" id="searchForm">
 
-      <select id="recordPerPage" name="recordPerPage" class="form-control ml-3" 
-      onchange="document.forms.searchForm.submit()">
-        <option value="10" selected>Choose...</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
+      <select id="orderBy" name="orderBy" class="form-control shadow ml-1" 
+        onchange="document.forms.searchForm.submit()">
+          <?php
+          foreach($orderByColums as $value){ ?>
+            <option <?=$orderBy == $value ? 'selected': ''?> value="<?=$value?>"><?=$value?></option>
+        <?php }?>
       </select>
 
-      <input class="form-control mr-sm-2  ml-3 " type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 ml-3" type="submit">Search</button>
+      <select id="orderDir" name="orderDir" class="form-control shadow ml-1" 
+        onchange="document.forms.searchForm.submit()">
+        <option <?=$orderBy === 'ASC' ? 'selected': ''?> value="ASC">ASC &#8593;</option>
+        <option <?=$orderBy === 'DESC' ? 'selected': ''?> value="DESC">DESC &#8595;</option>
+      </select>
+
+      <select id="recordPerPage" name="recordPerPage" class="form-control shadow ml-3" 
+      onchange="document.forms.searchForm.submit()">
+        <option value="10" selected>Choose...</option>
+        <?php
+        foreach($recordPerPageOptions as $value){ ?>
+          <option <?=$recordPerPage == $value ? 'selected': ''?> value="<?=$value?>"><?=$value?></option>
+       <?php }?>
+      </select>
+
+      <input class="form-control shadow mr-sm-2  ml-3 " type="text" name="search" id="search" placeholder="Search user" aria-label="Search" value="<?=$search?>">
+      <div class="btn-group shadow" role="group">
+      <button class="btn btn-outline-light my-2 my-sm-0 ml-3" type="submit">Search</button>
+      <button class="btn btn-warning my-2 my-sm-0" 
+      onclick="location.href='<?=$currentUrl?>'" type="button">RESET</button>
+      </div>
     </form>
   </div>
 </nav>

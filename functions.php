@@ -2,9 +2,9 @@
 
 require_once 'connection.php';
 
-function getConfig($param){
+function getConfig($param, $default = null){
     $config = require 'config.php';
-    return array_key_exists($param,$config) ? $config[$param] : null;
+    return array_key_exists($param,$config) ? $config[$param] : $default;
 }
 
 function getParam($parm, $default = null){
@@ -83,14 +83,27 @@ function getUsers(array $params = []){
     // for get param from array to order direction (ASC/DESC)
     $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
 
+    $limit = (int)array_key_exists('recordPerPage', $params) ? $params['recordPerPage'] : 10;
+
+    $search = array_key_exists('search', $params) ? $params['search'] : '';
+    $search = $conn->escape_string($search);
+
     if($orderDir !== 'ASC' && $orderDir !== 'DESC'){
         $orderDir = 'ASC';
     }
 
     $records = [];
-    $limit = (int)array_key_exists('recordPerPage', $params) ? $params['recordPerPage'] : 10;
+    
 
-    $sql = "SELECT * FROM `users` ORDER BY $orderBy $orderDir LIMIT $limit";
+    $sql = "SELECT * FROM `users`";
+    if($search){
+        $sql .= "WHERE username like '%$search%'";
+        $sql .= "OR fiscalcode like '%$search%'";
+        $sql .= "OR email like '%$search%'";
+        $sql .= "OR age like '%$search%'";
+        $sql .= "OR id like '%$search%'";
+    }
+    $sql .="ORDER BY $orderBy $orderDir LIMIT $limit";
     var_dump($sql);
     $res = $conn->query($sql);
     if($res){

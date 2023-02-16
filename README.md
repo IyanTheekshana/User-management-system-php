@@ -22,4 +22,5 @@
 ## 5° step:
 
 8. implemented filter dy record per page
-9.
+9. implemented search bar, reset.
+10. implemented filter button.
