@@ -32,3 +32,4 @@
 ## 7° step:
 
 12. improved pagination and filters
+13. improved pagination

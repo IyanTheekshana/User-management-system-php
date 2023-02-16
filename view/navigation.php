@@ -7,7 +7,11 @@
       <a class="page-link" href="<?= "$pageUrl?$navOrderByQueryString&page=".($page-1) ?>" tabindex="-1">Previous</a>
     </li>
     <?php 
-    $startValue = $page - $numLinks;
+
+    $extraLinks = $page + $numLinks - $numPages;
+    $extraLinks = $extraLinks > 0 ? $extraLinks : 0;
+
+    $startValue = $page - $numLinks -  $extraLinks;
     $startValue = $startValue < 1 ? 1 : $startValue;
     
     for($i =  $startValue; $i < $page; $i++):?>
@@ -22,9 +26,11 @@
       </li>     
 
       <?php 
-    $startValue = $page + 1;
+    
+    $extraLinks = $page - $numLinks  < 0 ? abs( $page - $numLinks) : 0;
+    $startValue = $page + 1 ;
     $startValue = $startValue < 1 ? 1 : $startValue;
-    $endValue = ($page+5);
+    $endValue = ($page+5 + $extraLinks);
     $endValue = $endValue> $numPages ? $numPages : $endValue;
     for($i =  $startValue; $i < $endValue; $i++):?>
       <li class="page-item">
