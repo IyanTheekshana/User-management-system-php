@@ -40,8 +40,8 @@
 
       <select id="orderDir" name="orderDir" class="form-control shadow ml-1" 
         onchange="document.forms.searchForm.submit()">
-        <option <?=$orderBy === 'ASC' ? 'selected': ''?> value="ASC">ASC &#8593;</option>
-        <option <?=$orderBy === 'DESC' ? 'selected': ''?> value="DESC">DESC &#8595;</option>
+        <option <?=$orderDir == 'ASC' ? 'selected': ''?> value="ASC">ASC &#8593;</option>
+        <option <?=$orderDir == 'DESC' ? 'selected': ''?> value="DESC">DESC &#8595;</option>
       </select>
 
       <select id="recordPerPage" name="recordPerPage" class="form-control shadow ml-3" 
