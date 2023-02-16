@@ -82,11 +82,18 @@ function getUsers(array $params = []){
 
     // for get param from array to order direction (ASC/DESC)
     $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+    $page = (int)array_key_exists('page', $params) ? $params['page'] : 0;
 
     $limit = (int)array_key_exists('recordPerPage', $params) ? $params['recordPerPage'] : 10;
 
     $search = array_key_exists('search', $params) ? $params['search'] : '';
     $search = $conn->escape_string($search);
+
+    $start = $limit * ($page-1);
+
+    if($start < 0){
+        $start = 0;
+    }
 
     if($orderDir !== 'ASC' && $orderDir !== 'DESC'){
         $orderDir = 'ASC';
@@ -103,7 +110,7 @@ function getUsers(array $params = []){
         $sql .= "OR age like '%$search%'";
         $sql .= "OR id like '%$search%'";
     }
-    $sql .="ORDER BY $orderBy $orderDir LIMIT $limit";
+    $sql .="ORDER BY $orderBy $orderDir LIMIT $start, $limit";
     var_dump($sql);
     $res = $conn->query($sql);
     if($res){
@@ -119,7 +126,45 @@ function getUsers(array $params = []){
     return $records;
 }
 
-// insertRandUser(0, $mysqli);
+
+function countUsers(array $params = []){
+
+    $conn = $GLOBALS['mysqli'];
+
+    // for get param from array to order by
+    $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id';
+
+    // for get param from array to order direction (ASC/DESC)
+    $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+
+    $limit = (int)array_key_exists('recordPerPage', $params) ? $params['recordPerPage'] : 10;
+
+    $search = array_key_exists('search', $params) ? $params['search'] : '';
+    $search = $conn->escape_string($search);
+
+    if($orderDir !== 'ASC' && $orderDir !== 'DESC'){
+        $orderDir = 'ASC';
+    }
+
+    $total = 0;
+    
+
+    $sql = "SELECT COUNT(*) as total FROM `users`";
+    $res = $conn->query($sql);
+    if($res){
+
+        $row = $res->fetch_assoc();
+        $total = $row['total'];
+          
+    }else{
+        echo $conn->error."<br>";
+        die($conn->error);
+    }
+
+    return $total;
+}
+// insertRandUser(90, $mysqli);
 // echo getConfig('recordPerPage');
 
+// echo countUsers();
 

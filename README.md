@@ -24,3 +24,7 @@
 8. implemented filter dy record per page
 9. implemented search bar, reset.
 10. implemented filter button.
+
+## 6° step:
+
+11. Added pagination
