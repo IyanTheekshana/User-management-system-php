@@ -1,17 +1,39 @@
+<?php
+  $numLinks = getConfig("numLinkNavigator", 5);
+?>
 <nav aria-label="..." >
   <ul class="pagination">
     <li class="page-item <?=$page == 1 ? 'disabled': ''?>" >
-      <a class="page-link" href="<?= "$pageUrl?page=".($page-1) ?>" tabindex="-1">Previous</a>
+      <a class="page-link" href="<?= "$pageUrl?$navOrderByQueryString&page=".($page-1) ?>" tabindex="-1">Previous</a>
     </li>
-    <?php for($i = 1; $i <= $numPages; $i++) {
-        $class = $i == $page ? ' active ': '';
-        if($class){?>
-        <li class="page-item <?=$class?>"><a class="page-link user-select-none" href="#" disabled><?=$i?></a></li>     
-    <?php }else{ ?>
-        <li class="page-item"><a class="page-link" href="<?="$pageUrl?page=$i"?>"><?=$i?></a></li>    
-    <?php }} ?>
+    <?php 
+    $startValue = $page - $numLinks;
+    $startValue = $startValue < 1 ? 1 : $startValue;
+    
+    for($i =  $startValue; $i < $page; $i++):?>
+      <li class="page-item">
+        <a class="page-link" href="<?="$pageUrl?$navOrderByQueryString&page=$i"?>"><?=$i?></a>
+      </li>    
+    <?php endfor;
+    ?>
+
+      <li class="page-item active">
+        <a class="page-link disabled" href="#" disabled><?=$page?></a>
+      </li>     
+
+      <?php 
+    $startValue = $page + 1;
+    $startValue = $startValue < 1 ? 1 : $startValue;
+    $endValue = ($page+5);
+    $endValue = $endValue> $numPages ? $numPages : $endValue;
+    for($i =  $startValue; $i < $endValue; $i++):?>
+      <li class="page-item">
+        <a class="page-link" href="<?="$pageUrl?$navOrderByQueryString&page=$i"?>"><?=$i?></a>
+      </li>    
+    <?php endfor;
+    ?>  
     <li class="page-item  <?=$page == $numPages ? 'disabled': ''?>">
-    <a class="page-link" href="<?= "$pageUrl?page=".($page+1) ?>" tabindex="1">Next</a>
+    <a class="page-link" href="<?= "$pageUrl?$navOrderByQueryString&page=".($page+1) ?>" tabindex="1">Next</a>
     </li>
   </ul>
 </nav>

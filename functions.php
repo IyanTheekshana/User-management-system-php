@@ -105,10 +105,10 @@ function getUsers(array $params = []){
     $sql = "SELECT * FROM `users`";
     if($search){
         $sql .= "WHERE username like '%$search%'";
-        $sql .= "OR fiscalcode like '%$search%'";
-        $sql .= "OR email like '%$search%'";
-        $sql .= "OR age like '%$search%'";
-        $sql .= "OR id like '%$search%'";
+        $sql .= " OR fiscalcode like '%$search%'";
+        $sql .= " OR email like '%$search%'";
+        $sql .= " OR age like '%$search%'";
+        $sql .= " OR id like '%$search%'";
     }
     $sql .="ORDER BY $orderBy $orderDir LIMIT $start, $limit";
     var_dump($sql);

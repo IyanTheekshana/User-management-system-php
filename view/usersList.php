@@ -1,16 +1,26 @@
 <?php
-    $orderDirClass = $orderDir;
+$orderDirClass = $orderDir;
     $orderDir = $orderDir === 'ASC' ? 'DESC' : 'ASC';
 ?>
 <div class="table-responsive-xl">
 <table class="table table-striped mt-4">
     <thead>
         <tr>
-            <th class="<?=$orderBy === 'id' ? $orderDirClass : '' ?>"><a href="<?=$pageUrl?>?orderBy=id&orderDir=<?=$orderDir?>">Id</a></th>
-            <th class="<?=$orderBy === 'username' ? $orderDirClass : '' ?>"><a href="<?=$pageUrl?>?orderBy=username&orderDir=<?=$orderDir?>">Name</a></th>
-            <th class="<?=$orderBy === 'fiscalcode' ? $orderDirClass : '' ?>"><a href="<?=$pageUrl?>?orderBy=fiscalcode&orderDir=<?=$orderDir?>">Fiscal Code</a></th>
-            <th class="<?=$orderBy === 'email' ? $orderDirClass : '' ?>"><a href="<?=$pageUrl?>?orderBy=email&orderDir=<?=$orderDir?>">Email</a></th>
-            <th class="<?=$orderBy === 'age' ? $orderDirClass : '' ?>"><a href="<?=$pageUrl?>?orderBy=age&orderDir=<?=$orderDir?>">Age</a></th>
+            <th class="<?=$orderBy === 'id' ? $orderDirClass : '' ?>">
+            <a href="<?=$pageUrl?>?<?=$orderByQueryString?>&orderDir=<?=$orderByQueryString?>&orderBy=id">Id</a>
+            </th>
+            <th class="<?=$orderBy === 'username' ? $orderDirClass : '' ?>">
+            <a href="<?=$pageUrl?>?<?=$orderByQueryString?>&orderDir=<?=$orderByQueryString?>&orderBy=username">Name</a>
+            </th>
+            <th class="<?=$orderBy === 'fiscalcode' ? $orderDirClass : '' ?>">
+            <a href="<?=$pageUrl?>?<?=$orderByQueryString?>&orderDir=<?=$orderByQueryString?>&orderBy=fiscalcode">Fiscal Code</a>
+            </th>
+            <th class="<?=$orderBy === 'email' ? $orderDirClass : '' ?>">
+            <a href="<?=$pageUrl?>?<?=$orderByQueryString?>&orderDir=<?=$orderByQueryString?>&orderBy=email">Email</a>
+            </th>
+            <th class="<?=$orderBy === 'age' ? $orderDirClass : '' ?>">
+            <a href="<?=$pageUrl?>?<?=$orderByQueryString?>&orderDir=<?=$orderByQueryString?>&orderBy=age">Age</a>
+            </th>
         </tr>
     </thead>
     <tbody>

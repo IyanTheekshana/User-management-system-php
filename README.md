@@ -28,3 +28,7 @@
 ## 6° step:
 
 11. Added pagination
+
+## 7° step:
+
+12. improved pagination and filters

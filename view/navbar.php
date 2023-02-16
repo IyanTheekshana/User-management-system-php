@@ -29,7 +29,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="<?=$currentUrl?>" id="searchForm">
-
+      <input type="hidden" name="page" id="page" value="<?=$page?>">
       <select id="orderBy" name="orderBy" class="form-control shadow ml-1" 
         onchange="document.forms.searchForm.submit()">
           <?php
@@ -45,7 +45,7 @@
       </select>
 
       <select id="recordPerPage" name="recordPerPage" class="form-control shadow ml-3" 
-      onchange="document.forms.searchForm.submit()">
+      onchange="document.forms.searchForm.page.value=1;document.forms.searchForm.submit()">
         <option value="10" selected>Choose...</option>
         <?php
         foreach($recordPerPageOptions as $value){ ?>
@@ -55,7 +55,9 @@
 
       <input class="form-control shadow mr-sm-2  ml-3 " type="text" name="search" id="search" placeholder="Search user" aria-label="Search" value="<?=$search?>">
       <div class="btn-group shadow" role="group">
-      <button class="btn btn-outline-light my-2 my-sm-0 ml-3" type="submit">Search</button>
+      <button class="btn btn-outline-light my-2 my-sm-0 ml-3" type="submit"
+      onclick="document.forms.searchForm.page.value=1"
+      >Search</button>
       <button class="btn btn-warning my-2 my-sm-0" 
       onclick="location.href='<?=$currentUrl?>'" type="button">RESET</button>
       </div>

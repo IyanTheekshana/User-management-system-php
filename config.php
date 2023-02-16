@@ -10,4 +10,5 @@ return [
     'orderByColums' => [
         'id','username','fiscalcode','email','age'
     ],
+    'numLinkNavigator' => 5,
 ];
